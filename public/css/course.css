@@ -1,0 +1,391 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lexend", sans-serif;
+}
+
+
+main{
+  background-color: #121212;
+  color: #fff;
+}
+
+.container-course{
+  padding: 120px;
+
+}
+
+.container-course .distance{
+  margin: 20px 0;
+}
+.container-course .text-sub-english a{
+  font-weight: 900;
+  font-size: 20px;
+  text-decoration: none;
+  margin: 5px;
+  color: #ffffff;
+}
+
+.container-course .text-statistical-english{
+  margin-top: 20px;
+}
+.container-course .text-statistical-english a{
+  font-style: italic;
+  text-decoration: none;
+  margin: 5px;
+  color: #ffffff;
+
+}
+.container-course .section-title{
+  align-items: center;
+  text-align: center;
+}
+
+/* Căn giữa theo chiều ngang */
+.d-inline-block.align-middle {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+/* Độ rộng tối đa của div chứa icon và văn bản */
+.d-inline-block.align-middle > * {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container-course .section-title h2{
+  color: #fff;
+  transform: skewX(-10deg);
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+}
+
+.container-course .section-title p{
+  color: #f7345e;
+  background: linear-gradient(300deg, #5858e6 40%, #e658ba);
+  transform: skewX(-10deg);
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  font-size: 50px;
+  text-transform: capitalize;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+
+.container-course .card_box:hover img{
+  transform: scale(1.05);
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.cover-course {
+  position: relative;
+  width: 100%;
+  height: 180px; /* Đặt chiều cao cố định cho hình ảnh */
+  overflow: hidden; /* Ẩn các phần thừa của hình ảnh */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cover-course img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Đảm bảo hình ảnh che phủ toàn bộ khu vực mà không bị bóp méo */
+  object-position: center; /* Đặt hình ảnh ở giữa */
+
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Màu nền với độ trong suốt */
+  opacity: 0; /* Bắt đầu với overlay ẩn */
+  transition: opacity 0.3s ease; /* Chuyển đổi mượt mà */
+}
+
+.cover-course:hover .overlay {
+  opacity: 1; /* Hiển thị overlay khi hover */
+}
+
+.btn-view-course a {
+  color: white;
+  text-decoration: none;
+}
+
+.image-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .cover-course {
+      height: 200px; /* Điều chỉnh chiều cao khi responsive */
+  }
+}
+
+@media (max-width: 576px) {
+  .cover-course {
+      height: 150px; /* Điều chỉnh chiều cao khi responsive */
+  }
+}
+
+.container-course .single-demo-item:hover .cover-course {
+  border: solid #ff0037;
+  transition: 0.3s ease-in-out;
+}
+.container-course .cover-course{
+  width: 100%;
+  border-radius: 50px;
+  border: 5px solid rgb(231, 231, 231);
+  transition: 0.5s ease-in-out;
+}
+
+.cover-course {
+  position: relative;
+  overflow: hidden;
+}
+
+.cover-course img {
+  width: 100%;
+  height: auto;
+  transition: filter 0.5s ease;
+}
+
+.cover-course .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover-course .btn-view-course {
+  background-color: #fff;
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.cover-course .btn-view-course a{
+  text-decoration: none;
+  color: #062744;
+}
+.cover-course .btn-view-course:hover {
+  background-color: #f0f0f0;
+}
+
+.cover-course:hover img {
+  filter: brightness(70%);
+}
+
+.cover-course:hover .overlay {
+  opacity: 1;
+}
+
+
+.container-course .content-des-course{
+  margin: 10px 0;
+}
+
+.container-course .content-des-course .text-with-solid-line-through{
+  position: relative;
+  font-size: 16px;
+}
+
+.container-course .content-des-course .text-with-solid-line-through::after{
+  content: '';
+  position: absolute;
+  bottom: 50%;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+.container-course .content-des-course .price-text{
+  color: #f7345e;
+  background: linear-gradient(-107deg, #82009f 0%, #f7345e 100%);
+  transform: skewX(-10deg);
+  position: relative;
+  display: inline-block;
+  font-weight: 500;
+  font-size: 16px;
+  text-transform: capitalize;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.container-course .card_text .btn-primary {
+  width: 100%;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.container-course .card_text .btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ff6ec4, #7873f5, #4adede, #ff6ec4);
+  background-size: 200% 200%;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+  animation: gradientMove 5s linear infinite; /* Adjust animation duration */
+  opacity: 1;
+}
+
+@keyframes gradientMove {
+  0% {
+      background-position: 0% 50%;
+  }
+  100% {
+      background-position: 200% 50%; /* Transition from 0% to 200% */
+  }
+}
+
+
+.container-course .card_text .name_course{
+  text-transform: capitalize;
+  margin-top: 10px;
+  font-size: 1.25rem;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 767px) {
+  .container-course #card_wrapper{
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 1024px) {
+  .container-course #card_wrapper .owl-nav{
+    display: none;
+  }
+}
+
+.slider_carousel .owl-nav {
+ position: absolute;
+ top: 50%;
+ width: 100%;
+}
+
+.slider_carousel .owl-prev, .slider_carousel .owl-next {
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+}
+
+
+.slider_carousel .owl-next {
+  right: -50px;
+}
+
+.slider_carousel .owl-prev {
+  left: -50px;
+}
+
+.reviews-container{
+  display: flex;
+  margin: 40px 0;
+}
+
+
+
+#container-register{
+  display: none;
+}
+
+#container-register{
+
+}
+
+.form-register a{
+  text-decoration: none;
+  color: #fff;
+}
+
+.form-register .btn-register{
+  font-size: 18px;
+  line-height: 35px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: capitalize;
+  border: 0;
+  border-radius: 25px;
+  background-color: #f7345e;
+  color: #fff;
+  padding: 0 50px;
+  transition: 0.3s ease-in-out;
+}
+
+.form-register .btn-register:hover{
+  background-color: #22c8e5;
+  color: #fff;
+  transition: 0.3s ease-in-out;
+
+}
+
+.form-register .btn-success{
+  font-size: 18px;
+  line-height: 50px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: capitalize;
+  border: 0;
+  border-radius: 25px;
+  background-color: #f7345e;
+  color: #fff;
+  padding: 0 50px;
+  transition: 0.3s ease-in-out;
+}
+
+.form-register .container-img-resgister{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.error {
+  border: 2px solid red; /* Đường viền đỏ */
+  background-color: #ffe6e6; /* Màu nền nhạt */
+}
+
+
+

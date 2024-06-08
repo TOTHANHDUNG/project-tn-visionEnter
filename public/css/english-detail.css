@@ -1,0 +1,205 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #171d2c;
+    font-size: 18px;
+    color: #fff;
+}
+.navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.navbar-brand img {
+    height: 50px;
+    width: auto;
+}
+
+.navbar-nav a{
+    color: aliceblue;
+    font-weight: 700;
+}
+.container-navbar .navbar{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Để header luôn ở trên cùng */
+    background: #82009f;
+    background: -moz-linear-gradient(left, #82009f 0%, #5d34af 50%, #00ceab 100%);
+    background: -webkit-linear-gradient(left, #82009f 0%, #5d34af 50%, #00ceab 100%);
+    background: linear-gradient(to right, #82009f 0%, #5d34af 50%, #00ceab 100%);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    right: 0;
+    left: 0;
+    margin: 0;
+    padding: 10px;
+    }
+
+.content-infor{
+    margin-top: 90px;
+    color: aliceblue;
+}
+
+.content-infor h1{
+    font-size: 60px;
+    font-weight: 700;
+}
+.content-infor span{
+    color: #f7345e;
+    background: linear-gradient(-107deg, #82009f 0%, #f7345e 100%);
+    transform: skewX(-10deg);
+    position: relative;
+    display: inline-block;
+    font-weight: 700;
+    text-transform: capitalize;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.content-infor .btn-hocthu {
+    background-color: aliceblue;
+    border-radius: 20px;
+    
+}
+
+.content-infor .btn-hocthu a,	
+.content-infor .btn-muakhoahoc a{
+    text-decoration: none;
+    color: #0d1018;
+    font-weight: 700;
+
+}
+
+.content-infor .btn-muakhoahoc{
+    background-color: transparent;
+    border-radius: 20px;
+    border: 1px solid #82009f;
+}
+
+.content-infor .btn-muakhoahoc a{
+    color: aliceblue;
+}
+
+#course-mkt{
+  margin: 100px 0;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.container-content{
+  text-align: center;
+}
+
+.container-youtube{
+  padding: 10px;
+}
+.container-youtube .container-content{
+  align-items: center;
+}
+
+.container-youtube .container-content {
+  color: #ffffff;
+}
+.container-youtube .container-content span{
+  color: #f7345e;
+  font-size: 3rem;
+  background: linear-gradient(300deg, #5858e6 40%, #e658ba);
+  transform: skewX(-10deg);
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  text-transform: capitalize;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.container-youtube .embed-responsive {
+  box-shadow: rgba(248, 248, 248, 0.2) 0px 6px 24px 0px, rgba(250, 250, 250, 0.08) 0px 0px 0px 1px;
+  border-radius: 20px;
+}
+
+ .embed-responsive {
+    box-shadow: rgba(248, 248, 248, 0.2) 0px 6px 24px 0px, rgba(250, 250, 250, 0.08) 0px 0px 0px 1px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .embed-responsive:first-child{
+    margin: 40px 0;
+  }
+  
+  .form-register{
+   
+  }
+  .form-register a{
+    text-decoration: none;
+    color: #fff;
+  }
+  .form-register .btn-register{
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: capitalize;
+    border: 0;
+    border-radius: 25px;
+    background-color: #f7345e;
+    color: #fff;
+    padding: 0 50px;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .form-register .btn-register:hover{
+    background-color: #22c8e5;
+    color: #fff;
+    transition: 0.3s ease-in-out;
+  }
+  .video-container {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* Tỷ lệ 16:9 */
+    position: relative;
+  }
+  
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .form-register .btn-success{
+    font-size: 18px;
+    line-height: 50px;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: capitalize;
+    border: 0;
+    border-radius: 25px;
+    background-color: #f7345e;
+    color: #fff;
+    padding: 0 50px;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .form-register .container-img-resgister{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .error {
+    border: 2px solid red; /* Đường viền đỏ */
+    background-color: #ffe6e6; /* Màu nền nhạt */
+  }
+  
+  @media (min-width: 1200px){
+    main{
+      width: 100%;
+    }
+  }

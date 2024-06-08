@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'BR Omega';
+    src: local('BR Omega Bold'), local('BR-Omega-Bold'),
+        url('BROmega-Bold.woff2') format('woff2'),
+        url('BROmega-Bold.woff') format('woff'),
+        url('BROmega-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }

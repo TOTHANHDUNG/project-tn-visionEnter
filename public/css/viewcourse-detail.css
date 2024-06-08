@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #0d1018;
+}
+
+.navbar-nav a{
+    color: aliceblue;
+    font-weight: 700;
+}
+
+.navbar-toggler{
+    background-color: aliceblue;
+}
+.navbar-nav a:hover{
+    color: rgb(228, 228, 228);
+}
+
+.content-open {
+    text-align: center;
+    align-items: center;
+}
