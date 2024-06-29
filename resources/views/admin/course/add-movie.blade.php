@@ -8,37 +8,38 @@
       <div class="col-8">
         <div class="card">
           <div class="card-body">
-            <form action="/insertteacher" method="POST" enctype="multipart/form-data">
-              @csrf
+            <form action="{{route('addMovieHandle')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="courseId" value="{{$course->id}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
               <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label" required>Tên Giáo viên</label>
-                <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                <label for="exampleInputEmail1" class="form-label" required> Tên movie</label>
+                <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                @error('name')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label" required>Mô tả movie</label>
+                <textarea name="description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" rows="5" required style="resize: none;"></textarea>
                 @error('name')
                     <div class="alert alert-danger">{{$message}}</div>
                 @enderror
               </div>
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label" required>Mô tả giáo viên</label>
-                <textarea name="description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" rows="5" required style="resize: none;"></textarea>
-                @error('description')
-                    <div class="alert alert-danger">{{$message}}</div>
-                @enderror
-              </div>
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Ngôn ngữ</label>
-                <select class="form-select" name="language" aria-label="Default select example" required>
-                  <option disabled selected value >Chọn ngôn ngữ</option>
-                  <option value="english">English</option>
-                  <option value="korean">Korean</option>
+              <div class="form-group">
+                <label for="inputStatus">Giáo viên</label>
+                <select id="inputStatus" name ='teacherId' class="form-control custom-select">
+                  <option selected disabled>Select one</option>
+                    @if(!empty($teachers))
+                        @foreach ($teachers as $teacher)
+                            <option value="{{$teacher->id}}">{{$teacher->name}}</option>
+                        @endforeach
+                    @endif
                 </select>
               </div>
               <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label" >Upload Ảnh</label>
-                <input type="file" name="photo" class="form-control" required>
-              </div>
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label" required>Số điện thoại</label>
-                <input type="text" name="phone_number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                <label for="exampleInputEmail1" class="form-label" required>Video</label>
+                <input type="file" name="video" class="form-control" id="photo">
                 @error('name')
                     <div class="alert alert-danger">{{$message}}</div>
                 @enderror

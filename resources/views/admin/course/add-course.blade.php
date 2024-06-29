@@ -11,22 +11,22 @@
             <form action="/insertcourse" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label" required> Giáo viên</label>
-                <input type="text" name="teacherid" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                @error('name')
-                    <div class="alert alert-danger">{{$message}}</div>
-                @enderror
-              </div>
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label" required>Tên khóa học</label>
+                <label for="exampleInputEmail1" class="form-label" required> Tên khoá học</label>
                 <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                 @error('name')
-                    <div class="alert alert-danger">{{$message}}</div>
-                @enderror
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
               </div>
               <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label" >Upload Ảnh</label>
-                <input type="file" name="photo" class="form-control" required>
+                <label for="exampleInputEmail1" class="form-label" required> Giáo Viên</label>
+                <select name="teacherid">
+                    @foreach($teachers as $teacher)
+                        <option name="teachid" value="{{$teacher['id']}}" > {{$teacher['name']}}</option>
+                    @endforeach
+                </select>
+                @error('name')
+                    <div class="alert alert-danger">{{$message}}</div>
+                @enderror
               </div>
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label" required>Mô tả khóa học</label>
@@ -45,10 +45,10 @@
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Ngôn ngữ</label>
                 <select class="form-select" name="language" aria-label="Default select example" required>
-                  <option disabled selected value >English</option>
+                  <option disabled selected value >Sellect Languages</option>
                   <option value="english">English</option>
                   <option value="korean">Korean</option>
-                </select>                
+                </select>
               </div>
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Loại hình</label>
@@ -56,8 +56,22 @@
                   <option disabled selected value >Online</option>
                   <option value="online">Online</option>
                   <option value="offline">Offline</option>
-                </select>                
-              </div>        
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label" required>Hình ảnh</label>
+                <input type="file" name="photo" class="form-control" id="photo">
+                @error('name')
+                    <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label" required>Video</label>
+                <input type="file" name="video" class="form-control" id="photo">
+                @error('name')
+                    <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+              </div>
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
           </div>

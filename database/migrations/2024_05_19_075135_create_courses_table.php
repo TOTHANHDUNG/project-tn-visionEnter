@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('language',['english', 'korean'])->default('english');
             $table->enum('type',['online', 'offline'])->default('online');
             $table->string('photo')->default('/images/avatar.jpg');
-            $table->string('video');
+            $table->string('video')->nullable();
             $table->timestamps();
         });
     }

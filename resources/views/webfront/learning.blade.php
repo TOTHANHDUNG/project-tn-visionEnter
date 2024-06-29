@@ -42,19 +42,40 @@
                 </div>
             </nav>
         </div>
-
         <div class="content-video justify-content-center" id="video-lesson">
             <div class="row">
                 <div class="col-xl-9">
                     <div class="main-video-container">
-                        <video src="/videos/Fake-food.mp4" controls class="main-video" id="videoPlayer"></video>
-                        <h3 class="main-vid-title">house flood animation</h3>
-                        <h6 class="release-date">20-6-2024</h6>
+                        <video src="{{$movies[0]->url}}" controls class="main-video" id="videoPlayer"></video>
+                        <h3 class="main-vid-title">{{$movies[0]->title}}</h3>
+                        <h6 class="release-date"{{  date('d/m/y', strtotime($movies[0]->created_at))}}</h6>
                     </div>
                 </div>
                 <div class="col-xl-3">
                     <div class="video-list-container">
-                        <div class="list active">
+                        {{-- @dd($movies); --}}
+                        @php
+                        $i = 0;
+                        @endphp
+                        @foreach($movies as $movie)
+                            @if($i == 0)
+                                <div class="list active">
+                                    <video src="{{$movie->url}}" class="list-video"></video>
+
+                                    <h3 class="list-title">{{$movie->title}}</h3>
+                                </div>
+                                @php
+                                    $i++;
+                                @endphp
+                                @continue
+                            @endif
+                            <div class="list">
+                                <video src="{{$movie->url}}" class="list-video"></video>
+                                <h3 class="list-title">{{$movie->title}}    </h3>
+                            </div>
+
+                        @endforeach
+                        {{-- <div class="list active">
                             <video src="videos/Fake-food.mp4" class="list-video"></video>
 
                             <h3 class="list-title">house flood animationnnnnnnnnnnnnnn</h3>
@@ -98,7 +119,7 @@
                         <div class="list">
                             <video src="videos/War-Veteran.mp4" class="list-video"></video>
                             <h3 class="list-title">emoji falling animation</h3>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

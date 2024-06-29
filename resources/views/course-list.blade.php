@@ -23,7 +23,7 @@
                             </div>
                             <div class="card_text">
                                 <h4>{{$course->name}}</h4>
-                                <p>Giá: {{$course->price}} VND</p>
+                                <p>Giá: {{$course->price}} USD</p>
                                 <p>Thời gian: {{$course->duration}}</p>
                                 <p>Rating: {{$course->rating}}</p>
                                 <a href="#" class="btn btn-primary">Xem ngay</a>
@@ -35,6 +35,6 @@
             </div>
         </div>
     </div>
-    
+
 </body>
 </html>

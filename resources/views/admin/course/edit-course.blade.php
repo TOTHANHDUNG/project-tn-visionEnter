@@ -1,55 +1,79 @@
 @extends('admin.admin')
-
 @section('content')
 <body>
   <h1 class="text-center mb-4">CHỈNH SỬA DỮ LIỆU</h1>
 
-  <div class="container">
+  <div class="container mb-5">
     <div class="row justify-content-center">
       <div class="col-8">
         <div class="card">
           <div class="card-body">
-            <form action="/updatecourse/{{$data->id}}" method="POST" enctype="multipart/form-data">
+            <form action="/insertcourse" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="mb-3">
-                  <label for="teacherid" class="form-label">Giáo viên</label>
-                  <input type="text" name="teacherid" class="form-control" id="teacherid" aria-describedby="emailHelp" required value="{{$data->teacherid}}">
+                <label for="exampleInputEmail1" class="form-label" required> Tên khoá học</label>
+                <input type="text" name="name" value="{{$data->name}}"" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                @error('name')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
               </div>
               <div class="mb-3">
-                  <label for="name" class="form-label">Tên khóa học</label>
-                  <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" required value="{{$data->name}}">
+                <label for="exampleInputEmail1" class="form-label" required> Giáo Viên</label>
+                <select name="teacherid">
+                    @foreach($teachers as $teacher)
+                        <option name="teachid" value="{{$teacher['id']}}"  {{$data->teacherid == $teacher['id'] ? 'selected' : ''}}> {{$teacher['name']}}  </option>
+                    @endforeach
+                </select>
+                @error('name')
+                    <div class="alert alert-danger">{{$message}}</div>
+                @enderror
               </div>
               <div class="mb-3">
-                  <label for="photo" class="form-label">Upload Ảnh</label>
-                  <input type="file" name="photo" class="form-control" id="photo">
+                <label for="exampleInputEmail1" class="form-label" required>Mô tả khóa học</label>
+                <textarea name="description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" rows="5" required style="resize: none;">{{$data['description']}}</textarea>
+                @error('name')
+                    <div class="alert alert-danger">{{$message}}</div>
+                @enderror
               </div>
               <div class="mb-3">
-                  <label for="description" class="form-label">Mô tả khóa học</label>
-                  <textarea name="description" class="form-control" id="description" aria-describedby="emailHelp" rows="5" required style="resize: none;">{{$data->description}}</textarea>
+                <label for="exampleInputEmail1" class="form-label" required>Giá</label>
+                <input type="number" value="{{$data['price']}}" name="price" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                @error('name')
+                    <div class="alert alert-danger">{{$message}}</div>
+                @enderror
               </div>
               <div class="mb-3">
-                  <label for="price" class="form-label">Giá</label>
-                  <input type="number" name="price" class="form-control" id="price" aria-describedby="emailHelp" required value="{{$data->price}}">
+                <label for="exampleInputEmail1" class="form-label">Ngôn ngữ</label>
+                <select class="form-select" name="language" aria-label="Default select example" required>
+                  <option disabled selected value >Sellect Languages</option>
+                  <option value="english" {{$data['language'] == 'english' ? 'selected' : ''}}>English</option>
+                  <option value="korean" {{$data['language'] == 'korean' ? 'selected' : ''}}>Korean</option>
+                </select>
               </div>
               <div class="mb-3">
-                  <label for="language" class="form-label">Ngôn ngữ</label>
-                  <select class="form-select" name="language" id="language" aria-label="Default select example">
-                      <option disabled selected value>{{$data->language}}</option>
-                      <option value="english">English</option>
-                      <option value="korean">Korean</option>
-                  </select>
+                <label for="exampleInputEmail1" class="form-label">Loại hình</label>
+                <select class="form-select" name="type" aria-label="Default select example" required>
+                  <option disabled selected value >Select</option>
+                  <option value="online" {{$data['type'] == 'online' ? 'selected' : ''}}>Online</option>
+                  <option value="offline" {{$data['type'] == 'offline' ? 'selected' : ''}}>Offline</option>
+                </select>
               </div>
               <div class="mb-3">
-                  <label for="type" class="form-label">Loại hình</label>
-                  <select class="form-select" name="type" id="type" aria-label="Default select example">
-                      <option disabled selected value>{{$data->type}}</option>
-                      <option value="online">Online</option>
-                      <option value="offline">Offline</option>
-                  </select>
+                <label for="exampleInputEmail1" class="form-label" required>Hình ảnh</label>
+                <input type="file" name="photo" class="form-control" id="photo">
+                @error('name')
+                    <div class="alert alert-danger">{{$message}}</div>
+                @enderror
               </div>
-              <button type="submit" class="btn btn-primary">Update</button>
-          </form>
-          
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label" required>Video</label>
+                <input type="file" name="video" class="form-control" id="photo">
+                @error('name')
+                    <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
           </div>
         </div>
       </div>

@@ -12,16 +12,16 @@ class AuthManager extends Controller
 {
     function login(){
         if(Auth::check()){
-            return redirect(route('home'));  
+            return redirect(route('home'));
         }
-        return view('admin.login');  
+        return view('admin.login');
     }
 
     function registration(){
         if(Auth::check()){
-            return redirect(route('home'));  
+            return redirect(route('home'));
         }
-        return view('admin.registration');  
+        return view('admin.registration');
     }
 
     function loginPost(Request $request){
@@ -29,14 +29,12 @@ class AuthManager extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-    
         $credentials = $request->only('email','password');
         if(Auth::attempt($credentials)){
             return redirect()->intended(route('home'));
         }
         return redirect(route('login'))->with("error","Chi tiết đăng nhập không hợp lệ!");
     }
-    
 
     function registrationPost(Request $request){
         $request->validate([

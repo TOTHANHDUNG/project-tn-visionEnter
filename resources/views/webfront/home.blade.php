@@ -69,8 +69,8 @@
       </div>
     </div>
   </section>
-   
-   
+
+
    <div id="card_wrapper">
        <div class="container-content row">
          <div class="title-content col-12 text-center">
@@ -79,6 +79,7 @@
          </div>
          <div class="col-12">
            <div class="owl-carousel slider_carousel">
+            @if(!empty($teacher_english))
              @foreach ($teacher_english as $teacher)
              <div class="card_box">
                <div class="image-container">
@@ -90,12 +91,13 @@
                </div>
              </div>
              @endforeach
+             @endif
            </div>
          </div>
        </div>
    </div>
-   
-   
+
+
    {{-- maketing course --}}
    <div id="course_mkt">
     <div class="container-youtube1">
@@ -114,7 +116,7 @@
         </div>
       </div>
     </div>
-    
+
        <div class="container-youtube1">
          <div class="row container-content d-flex">
            <div class="col-xl-6 col-lg-6">
@@ -131,7 +133,7 @@
            </div>
          </div>
        </div>
-       
+
        <div class="container-youtube1">
          <div class="row container-content d-flex">
            <div class="col-xl-6 col-lg-6 align-items-center text-center">
@@ -149,8 +151,8 @@
          </div>
        </div>
    </div>
-  
-   
+
+
      {{-- register  --}}
      <div class="form-register">
        <div class="align-items-center text-center">
@@ -159,10 +161,10 @@
    </div>
    @include('review')
    @include('answer-question')
-  
+
 </div>
  <!-- introduce  -->
- 
+
 </main>
 @include('footer')
 
@@ -294,7 +296,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
   </script>
-  
+
 </body>
 </html>
 

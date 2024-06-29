@@ -62,7 +62,7 @@
                                     colors="primary:#ffffff" style="width:20px;height:20px; padding-top: 3px"></lord-icon>
                             </button>
                         </div>
-    
+
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
             </div>
-              
+
             <div class="container-youtube">
                 <div class="row container-content d-flex justify-content-center align-items-center">
                     <div class="col-xl-6 col-lg-6 d-flex justify-content-center">
@@ -110,7 +110,7 @@
                     </div>
                 </div>
             </div>
-                 
+
             <div class="container-youtube">
                 <div class="row container-content d-flex justify-content-center align-items-center">
                     <div class="col-xl-6 col-lg-6 d-flex justify-content-center align-items-center flex-column">
@@ -127,7 +127,7 @@
                 </div>
             </div>
         </div>
-    
+
         {{-- register  --}}
         <div class="form-register">
             <div class="align-items-center text-center">
@@ -141,7 +141,7 @@
         @include('answer-question')
     </div>
     {{-- center  --}}
-    
+
     @include('footer')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
