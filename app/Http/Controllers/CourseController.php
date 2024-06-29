@@ -8,8 +8,10 @@ use App\Models\Movies;
 use Illuminate\Support\Facades\Session; // Import Session
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\events; 
-
+use App\events;
+use App\Models\Movie;
+use App\Models\Teacher;
+use App\Models\Transaction;
 
 class CourseController extends Controller
 {
@@ -24,17 +26,35 @@ class CourseController extends Controller
         return view('admin.course.data-course', compact('data'));
     }
 
-    public function addcourse(){
-        return view('admin.course.add-course');
+    public function addCourse(){
+        $teachers = Teacher::get()->toArray();
+        return view('admin.course.add-course', compact('teachers'));
+    }
+
+    public function detail($courseId)
+    {
+        $courseDetail = Course::where('id', $courseId)->first();
+        $boughtCourse = null;
+        if(Auth::check()){
+            $boughtCourse = Transaction::where('course_id', $courseId)->where('user_id', Auth::user()->id)->first();
+        }
+
+        if(empty($courseDetail)){
+            return false;
+        }
+        return view('webfront.course-detail', compact('courseDetail', 'boughtCourse'));
     }
 
     public function insertcourse(Request $request){
-        $this->validate($request,[
-            'teacherid' => 'required|min:5|max:50',
-            'name' => 'required|min:5|max:50',
-        ]);
+        // $this->validate($request,[
+        //     'teacherid' => 'required',
+        //     // 'name' => 'required|min:5|max:50',
+        // ]);
         // dd($request->all());
-        $data = Course::create($request->all());
+        $data = $request->all();
+        $data['video'] = '';
+        unset($data['_token']);
+        $result = Course::create($data);
         if($request->hasFile('photo')){
             $request->file('photo')->move('photodata/',$request->file('photo')->getClientOriginalName());
             $data->photo = $request->file('photo')->getClientOriginalName();
@@ -46,27 +66,27 @@ class CourseController extends Controller
     public function editcourse($id){
         $data = Course::find($id);
         // dd($data);
-
-        return view('admin.course.edit-course', compact('data'));
+        $teachers = Teacher::get();
+        return view('admin.course.edit-course', compact('data', 'teachers'));
     }
 
     public function updatecourse(Request $request, $id){
         $data = Course::find($id);
         $data->update($request->all());
-    
+
         // Xử lý cập nhật ảnh nếu có
         if($request->hasFile('photo')){
             $request->file('photo')->move('photodata/',$request->file('photo')->getClientOriginalName());
             $data->photo = $request->file('photo')->getClientOriginalName();
             $data->save();
         }
-    
+
         if(session('halaman_url')){
             return redirect(session('halaman_url'))->with('success','Data Berhasil Di Update');
         }
         return redirect()->route('data-course')->with('success','Data Berhasil Di Update');
     }
-    
+
     public function delete($id){
         $data = Course::find($id);
         $data->delete();
@@ -95,11 +115,11 @@ class CourseController extends Controller
         foreach($urls as $url)
         {
             $data= [
-                	'title' => 'test',	
-                    'description' => "hoc hoc choc",	
-                    'movie_url' => $url, 	
-                    'CourseID' => 213,	
-                    'GenrelD'=> 14, 
+                	'title' => 'test',
+                    'description' => "hoc hoc choc",
+                    'movie_url' => $url,
+                    'CourseID' => 213,
+                    'GenrelD'=> 14,
                     'TeacherID' => 1,
                     // "updated_at" =>time(),
                     // "created_at" =>time(),
@@ -123,8 +143,7 @@ class CourseController extends Controller
             $urls[$i] = $test;
             $i++;
         }
-        
-        return $urls;        
+        return $urls;
     }
 
     public function getSrcFromS3($pathFile)
@@ -137,7 +156,7 @@ class CourseController extends Controller
 
     public function deleteVideo($movieID)
     {
-        $movieID = Movies::find($movieID);
+        $movieID = Movie::find($movieID);
         ///delte images
         $delS3v = $this->deleteMedia($movieID->movie_url);
         $movieID->delete();
@@ -148,12 +167,80 @@ class CourseController extends Controller
     {
         $amazonS3 = \Storage::disk('s3');
         // If url
-        if (filter_var($pathFile, FILTER_VALIDATE_URL)) {
-            $explode = explode("visioncenter-products.s3.us-east-2.amazonaws.com" . "/", $pathFile);
-            $pathFile = end($explode);
+        try{
+            if (filter_var($pathFile, FILTER_VALIDATE_URL)) {
+                // Extract path from the URL
+                $parsedUrl = parse_url($pathFile);
+                $pathFile = ltrim($parsedUrl['path'], '/');
+
+                // Check if the file exists on S3 and delete it
+                // if ($amazonS3->exists($pathFile)) {
+                //     $result = $amazonS3->delete($pathFile);
+                // }
+            }
+
+            return true;
         }
-        if ($amazonS3->has($pathFile)) {
-            $result = $amazonS3->delete($pathFile);
+        catch(\Exception $e)
+        {
+            return true;
         }
+
+    }
+
+    public function getMovies($courseID)
+    {
+        $data = Movie::where('courseId', $courseID)->paginate(10);
+        $course = Course::where('id', $courseID)->first();
+        return view('admin.course.list-movie', compact('data', 'course'));
+    }
+
+    public function addMovie($courseID)
+    {
+        $course = Course::where('id', $courseID)->first();
+        $teachers = Teacher::get();
+        return view('admin.course.add-movie', compact('course', 'teachers'));
+    }
+    public function addMovieHandle(Request $request)
+    {
+        $file = $request->file();
+        $url = $this->upload($file)[0] ?? null;
+        $dataSave = $request->all();
+        $dataSave['url']= $url;
+        $dataSave['genreId'] = 1;
+        unset($dataSave['_token']);
+        unset($dataSave['video']);
+
+        $result = Movie::create($dataSave);
+        return redirect(route('getMovies', $dataSave['courseId']));
+    }
+
+    public function deleteMovieHandle($movieId)
+    {
+        $movie = Movie::find($movieId);
+        ///delete images
+        $delS3v = $this->deleteMedia($movie->url);
+
+        Movie::where('id', $movieId)->delete();
+        return redirect(route('getMovies', $movie->courseId));
+    }
+
+    public function learning($courseId)
+    {
+        $try = false;
+        if(Auth::check())
+        {
+            $checkBuy = Transaction::where('course_id', $courseId)->where('user_id', Auth::user()->id)->first();
+            $try = !empty($checkBuy) ? true : false;
+        }
+        $movies = Movie::where('courseId', $courseId);
+        if(!$try)
+        {
+            $movies = $movies->limit(3)->get();
+        }else{
+            $movies = $movies->get();
+        }
+        return view('webfront.learning', compact('movies'));
     }
 }
+

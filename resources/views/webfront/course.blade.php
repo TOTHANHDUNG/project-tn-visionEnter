@@ -49,7 +49,7 @@
                                     <lord-icon class="d-inline-block align-middle"
                                         src="https://cdn.lordicon.com/hqymfzvj.json" trigger="loop" delay="1500"
                                         state="in-add-card" colors="primary:#ffffff" style="width:40px;height:40px">
-                                    </lord-icon><a href="">Gồm có {{ count($course_english) }} khóa học</a>
+                                    </lord-icon><a href="">Gồm có {{ !empty($course_english) ? count($course_english) : 0 }} khóa học</a>
                                 </div>
                                 <div class="col-12 text-sub-english">
                                     <lord-icon class="d-inline-block align-middle"
@@ -69,9 +69,9 @@
                                                 <div class="card_text">
                                                     <h4 class="name_course">{{ $course->name }}</h4>
                                                     <p><i class="fa-solid fa-coins" style="color: #ffffff;"></i>
-                                                        {{ $course->price }} VND</p>
+                                                        {{ $course->price }} USD</p>
                                                     <p><i class="fa-regular fa-clock"></i> {{ $course->teacherid }}</p>
-                                                    <a href="/english-detail" class="btn btn-primary">Xem ngay</a>
+                                                    <a href="{{route('course-detail', $course->id)}}" class="btn btn-primary">Xem ngay</a>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -81,7 +81,7 @@
                                     <lord-icon class="d-inline-block align-middle"
                                         src="https://cdn.lordicon.com/hqymfzvj.json" trigger="loop" delay="1500"
                                         state="in-add-card" colors="primary:#ffffff" style="width:40px;height:40px">
-                                    </lord-icon><a href="">Gồm có {{ count($course_korean) }} khóa học</a>
+                                    </lord-icon><a href="">Gồm có {{ !empty($course_korean) ? count($course_korean) : 0 }} khóa học</a>
                                 </div>
                                 <div class="col-12 text-sub-english">
                                     <lord-icon class="d-inline-block align-middle"
@@ -101,7 +101,7 @@
                                                 <div class="card_text">
                                                     <h4 class="name_course">{{ $course->name }}</h4>
                                                     <p><i class="fa-solid fa-coins" style="color: #ffffff;"></i>
-                                                        {{ $course->price }} VND</p>
+                                                        {{ $course->price }} USD</p>
                                                     <p><i class="fa-regular fa-clock "></i> {{ $course->teacherid }}
                                                     </p>
                                                     <a href="/korean-detail" class="btn btn-primary">Xem ngay</a>

@@ -11,7 +11,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Quản lý khóa học</h1>
+          <h1 class="m-0">Quản lý video khoá học</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -23,7 +23,7 @@
     </div><!-- /.container-fluid -->
   </div>
   <div class="container">
-    <a href="/add-course" type="button" class="btn btn-success">Thêm + </a>
+    <a href="{{route('addMovie', [$course->id])}}" type="button" class="btn btn-success">Thêm + </a>
     <div class="row g-3 align-items-center mt-2">
       <div class="col-auto">
         <form action="/data-course" method="GET">
@@ -36,13 +36,9 @@
         <thead>
           <tr>
             <th scope="col">ID</th>
-            <th scope="col">Giáo viên</th>
-            <th scope="col">Tên Khóa học</th>
-            <th scope="col">Ảnh</th>
+            <th scope="col">Movie name</th>
             <th scope="col">Mô tả</th>
-            <th scope="col">Giá</th>
-            <th scope="col">Ngôn ngữ</th>
-            <th scope="col">Thời gian</th>
+            <th scope="col">URL</th>
             <th scope="col">Hành động</th>
           </tr>
         </thead>
@@ -53,20 +49,13 @@
           @foreach ($data as $row)
           <tr>
             <th scope="row">{{$no ++}}</th>
-            <td>{{$row->teacherid}}</td>
-            <td>{{$row->name}}</td>
-            <td>
-              <img src="{{ asset('photodata/' . $row->photo) }}" alt="" style="width: 40px;">
-          </td>
-
+            <td>{{$row->title}}</td>
             <td>{{$row->description}}</td>
-            <td>{{$row->price}}</td>
-            <td>{{$row->language}}</td>
-            <td>{{$row->created_at->format(' D M Y')}}</td>
             <td>
-              <a href="/edit-course/{{$row->id}}" type="button" class="btn btn-warning">Edit</a>
-              <a href="#" type="button" class="btn btn-danger delete" data-id="{{$row->id}}" data-name="{{$row->name}}">Delete</a>
-              <a href="{{route('getMovies', $row->id)}}" type="button" class="btn btn-info delete" data-id="{{$row->id}}" data-name="{{$row->name}}">Quản lý video</a>
+                {{$row->url}}
+          </td>
+            <td>
+              <a href="{{route('deleteMovieHandle', $row->id)}}" type="button" class="btn btn-danger delete" data-id="{{$row->id}}" data-name="{{$row->name}}">Deleteee</a>
             </td>
           </tr>
           @endforeach

@@ -75,28 +75,28 @@ public function insertaccount(Request $request){
         }
         return view('admin.login');
     }
-    
+
     function registration() {
         if (Auth::check()) {
             return redirect()->route('home');
         }
         return view('admin.registration');
     }
-    
+
     function loginPost(Request $request) {
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6',
         ]);
-    
+
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()->intended(route('home'));
         }
         return redirect()->route('login')->with('error', 'Chi tiết đăng nhập không hợp lệ!');
     }
-    
-    
+
+
 
     function registrationPost(Request $request){
         $request->validate([
@@ -133,6 +133,6 @@ public function insertaccount(Request $request){
         $data = User::all(); // Lấy tất cả các khóa học
         return view('webfront.home', compact('data'));
     }
-    
+
 }
 
