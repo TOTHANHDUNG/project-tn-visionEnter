@@ -45,7 +45,7 @@ class CourseController extends Controller
         return view('webfront.course-detail', compact('courseDetail', 'boughtCourse'));
     }
 
-    public function insertcourse(Request $request){
+    public function insertCourse(Request $request){
         // $this->validate($request,[
         //     'teacherid' => 'required',
         //     // 'name' => 'required|min:5|max:50',
@@ -54,12 +54,12 @@ class CourseController extends Controller
         $data = $request->all();
         $data['video'] = '';
         unset($data['_token']);
-        $result = Course::create($data);
         if($request->hasFile('photo')){
-            $request->file('photo')->move('photodata/',$request->file('photo')->getClientOriginalName());
-            $data->photo = $request->file('photo')->getClientOriginalName();
-            $data->save();
+            $data['photo'] = $this->upload($data['photo']);
+
         }
+        $result = Course::create($data);
+
         return redirect()->route('data-course')->with('success','Data Berhasil Di tambahkan');
     }
 
@@ -131,19 +131,13 @@ class CourseController extends Controller
         return view('admin.course.upload-video', compact('course'));
     }
 
-    public function upload($files)
+    public function upload($file)
     {
-        $urls = [];
-        $i=0;
-        foreach($files as $key => $file)
-        {
-            $fileName = time().'.'.$file->getClientOriginalExtension();
-            $path = $file->storeAs('media', $fileName, 's3');
-            $test= $this->getSrcFromS3($path);
-            $urls[$i] = $test;
-            $i++;
-        }
-        return $urls;
+        $url = '';
+        $fileName = time().'.'.$file->getClientOriginalExtension();
+        $path = $file->storeAs('media', $fileName, 's3');
+        $url= $this->getSrcFromS3($path);
+        return $url;
     }
 
     public function getSrcFromS3($pathFile)

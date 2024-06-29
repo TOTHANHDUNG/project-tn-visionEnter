@@ -56,7 +56,7 @@ Route::group(['middleware' => ['auth.admin']], function () {
     Route::get('/upload-media/{id}', 'App\Http\Controllers\CourseController@uploadMedia');
     Route::post('/upload-media-handle/{id}', 'App\Http\Controllers\CourseController@uploadMediaHandle')->name('upload-media-handle');
     Route::get('/delete-movie/{id}', 'App\Http\Controllers\CourseController@deleteVideo');
-    Route::post('/insertcourse',[CourseController::class, 'insertcourse'])->name('insertcourse');
+    Route::post('/insert-course',[CourseController::class, 'insertCourse'])->name('insertcourse');
     Route::get('/edit-course/{id}',[CourseController::class, 'editcourse'])->name('edit-course');
     Route::post('/updatecourse/{id}',[CourseController::class, 'updatecourse'])->name('updatecourse');
     Route::get('/deletecourse/{id}',[CourseController::class, 'delete'])->name('deletecourse');
