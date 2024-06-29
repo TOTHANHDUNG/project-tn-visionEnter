@@ -198,7 +198,7 @@ class CourseController extends Controller
     public function addMovieHandle(Request $request)
     {
         $file = $request->file();
-        $url = $this->upload($file)[0] ?? null;
+        $url = $this->upload($file['video']) ?? null;
         $dataSave = $request->all();
         $dataSave['url']= $url;
         $dataSave['genreId'] = 1;
