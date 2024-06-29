@@ -56,7 +56,7 @@
             <td>{{$row->teacherid}}</td>
             <td>{{$row->name}}</td>
             <td>
-              <img src="{{ asset('photodata/' . $row->photo) }}" alt="" style="width: 40px;">
+              <img src="{{ $row->photo }}" alt="" style="width: 40px;">
           </td>
 
             <td>{{$row->description}}</td>
