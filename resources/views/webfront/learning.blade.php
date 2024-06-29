@@ -16,6 +16,7 @@
     <link rel="stylesheet" href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+
 </head>
 
 <body>
@@ -39,30 +40,71 @@
                             <a href="#" class="nav-item nav-link">VI</a>
                         </div>
                     </div>
+                    <div class="navbar-btn ml-auto action-buttons d-flex justify-content-center">
+                        @guest
+                            <div class="nav-item ml-auto action-buttons">
+                                <a href="/login" class="btn btn-login">Đăng nhập</a>
+                                <a href="/registration" class="btn sign-up-btn">Đăng ký</a>
+                            </div>
+                        @else
+                            <div class="nav-item ml-auto action-buttons">
+                                <div class="dropdown mr-5">
+                                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"
+                                        id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        @if (trim(Auth::user()->photo))
+                                            <img src="{{ asset('photodata/' . Auth::user()->photo) . '?' . time() }}"
+                                                alt="Avatar" class="cover-avatar me-2">
+                                        @else
+                                            <img src="{{ asset('photodata/avatar.png') }}" alt="Avatar"
+                                                class="cover-avatar me-2">
+                                        @endif
+                                        <span>{{ Auth::user()->name }}</span>
+                                    </a>
+    
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="/profile">Xem Hồ Sơ Cá Nhân</a></li>
+                                        <li><a class="dropdown-item" href="#">Cài Đặt</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li>
+                                            <form action="{{ route('logout') }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="dropdown-item"
+                                                    onclick="return confirmLogout()">Đăng Xuất</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        @endguest
+                    </div>
                 </div>
+                
             </nav>
+
         </div>
         <div class="content-video justify-content-center" id="video-lesson">
             <div class="row">
                 <div class="col-xl-9">
                     <div class="main-video-container">
-                        <video src="{{$movies[0]->url}}" controls class="main-video" id="videoPlayer"></video>
-                        <h3 class="main-vid-title">{{$movies[0]->title}}</h3>
-                        <h6 class="release-date"{{  date('d/m/y', strtotime($movies[0]->created_at))}}</h6>
+                        <video src="{{ $movies[0]->url }}" controls class="main-video" id="videoPlayer"></video>
+                        <h3 class="main-vid-title">{{ $movies[0]->title }}</h3>
+                        <h6 class="release-date"{{ date('d/m/y', strtotime($movies[0]->created_at)) }}</h6>
                     </div>
                 </div>
                 <div class="col-xl-3">
                     <div class="video-list-container">
                         {{-- @dd($movies); --}}
                         @php
-                        $i = 0;
+                            $i = 0;
                         @endphp
-                        @foreach($movies as $movie)
-                            @if($i == 0)
+                        @foreach ($movies as $movie)
+                            @if ($i == 0)
                                 <div class="list active">
-                                    <video src="{{$movie->url}}" class="list-video"></video>
+                                    <video src="{{ $movie->url }}" class="list-video"></video>
 
-                                    <h3 class="list-title">{{$movie->title}}</h3>
+                                    <h3 class="list-title">{{ $movie->title }}</h3>
                                 </div>
                                 @php
                                     $i++;
@@ -70,10 +112,9 @@
                                 @continue
                             @endif
                             <div class="list">
-                                <video src="{{$movie->url}}" class="list-video"></video>
-                                <h3 class="list-title">{{$movie->title}}    </h3>
+                                <video src="{{ $movie->url }}" class="list-video"></video>
+                                <h3 class="list-title">{{ $movie->title }} </h3>
                             </div>
-
                         @endforeach
                         {{-- <div class="list active">
                             <video src="videos/Fake-food.mp4" class="list-video"></video>
@@ -248,7 +289,7 @@
                     <div class="container container-rating d-flex justify-content-center align-items-center">
                         <div id="review" class="wrapper">
                             <h3>Đánh giá về bài học.</h3>
-                            @if(auth()->check())
+                            @if (auth()->check())
                                 <div id="rateYo"></div>
                             @else
                                 <div id="rateYo1"></div>
@@ -277,7 +318,7 @@
                             </form>
                         </div>
                     </div>
-                    
+
 
                 </div>
             </div>
@@ -290,6 +331,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script src="/js/try-learning.js"></script>
     <script>
@@ -429,8 +471,33 @@
                 alert('Bạn cần mua khóa học để xem thêm video!');
             }
         }
-       
     </script>
+
+    <script>
+        function confirmLogout() {
+            if (confirm('Bạn có chắc chắn muốn đăng xuất không?')) {
+                // Nếu người dùng nhấn OK, chuyển hướng đến trang logout
+                window.location.href = "{{ route('logout') }}";
+            } else {
+                // Nếu người dùng nhấn Cancel, không làm gì cả
+                return false;
+            }
+        }
+    </script>
+    <script>
+        // Prevent dropdown menu from closing when click inside the form
+        $(document).on("click", ".action-buttons .dropdown-menu", function(e) {
+            e.stopPropagation();
+
+        });
+        $(document).ready(function() {
+            // Ngăn chặn sự kiện lan truyền khi click vào menu thả xuống
+            $('.action-buttons .dropdown-menu').on('click', function(e) {
+                e.stopPropagation(); // Ngăn chặn sự kiện lan truyền lên các phần tử cha
+            });
+        });
+    </script>
+
 </body>
 
 </html>

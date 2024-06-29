@@ -170,8 +170,8 @@
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 <df-messenger
   intent="WELCOME"
-  chat-title="Chatbot-ai-project-laravel"
-  agent-id="6cbe68d9-c688-4575-ada4-a65a6d75ef47"
+  chat-title="Vision-Foreign-Language-Center"
+  agent-id="c413d77d-6131-4acc-a9a3-69c5971b327f"
   language-code="vi"
 ></df-messenger>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

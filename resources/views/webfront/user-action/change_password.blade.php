@@ -8,7 +8,7 @@
             <div class="card mb-4">
                 <div class="card-header">Đổi mật khẩu</div>
                 <div class="card-body">
-                    <form action="" method="POST">
+                    <form action="{{ route('user-action.change_password') }}" method="POST">
                         @csrf
                         <!-- Form Group (current password)-->
                         <div class="mb-3">

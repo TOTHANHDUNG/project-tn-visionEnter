@@ -60,7 +60,7 @@ class CourseController extends Controller
         }
         $result = Course::create($data);
 
-        return redirect()->route('data-course')->with('success','Data Berhasil Di tambahkan');
+        return redirect()->route('data-course')->with('success','Dữ liệu thêm thành công');
     }
 
     public function editcourse($id){
@@ -82,15 +82,15 @@ class CourseController extends Controller
         }
 
         if(session('halaman_url')){
-            return redirect(session('halaman_url'))->with('success','Data Berhasil Di Update');
+            return redirect(session('halaman_url'))->with('success','Cập nhật thành công!');
         }
-        return redirect()->route('data-course')->with('success','Data Berhasil Di Update');
+        return redirect()->route('data-course')->with('success','Cập nhật thành công!');
     }
 
     public function delete($id){
         $data = Course::find($id);
         $data->delete();
-        return redirect()->route('data-course')->with('success','Data Berhasil Di Update');
+        return redirect()->route('data-course')->with('success','Cập nhật thành công!');
     }
 
     public function courses() {
@@ -204,7 +204,6 @@ class CourseController extends Controller
         $dataSave['genreId'] = 1;
         unset($dataSave['_token']);
         unset($dataSave['video']);
-
         $result = Movie::create($dataSave);
         return redirect(route('getMovies', $dataSave['courseId']));
     }

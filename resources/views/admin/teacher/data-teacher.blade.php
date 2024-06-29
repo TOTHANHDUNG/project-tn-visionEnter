@@ -91,8 +91,8 @@
       var name = $(this).attr('data-name');
 
       swal({
-      title: "Are you sure?",
-      text: "Kamu akan menghapus data pegawai dengan id "+name+" ",
+      title: "Bạn có chắc?",
+      text: "Bạn có chắc xóa dữ liệu giáo viên "+name+" ",
       icon: "warning",
       buttons: true,
       dangerMode: true,
@@ -100,11 +100,11 @@
     .then((willDelete) => {
       if (willDelete) {
         window.location = "/deleteteacher/" + pegawaiid+""
-        swal("Poof! Your imaginary file has been deleted!", {
+        swal("Dữ liệu giáo viên đã bị xóa!", {
           icon: "success",
         });
       } else {
-        swal("Data tidak jadi dihapus!");
+        swal("Dữ liệu chưa bị xóa!");
       }
     });
     });

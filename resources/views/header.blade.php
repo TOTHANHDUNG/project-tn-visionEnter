@@ -104,6 +104,13 @@
                     e.stopPropagation();
 					
                 });
+				$(document).ready(function() {
+    // Ngăn chặn sự kiện lan truyền khi click vào menu thả xuống
+    $('.action-buttons .dropdown-menu').on('click', function(e) {
+        e.stopPropagation(); // Ngăn chặn sự kiện lan truyền lên các phần tử cha
+    });
+});
+
                 </script>
 </body>
 </html>

@@ -66,7 +66,7 @@
             <td>
               <a href="/edit-course/{{$row->id}}" type="button" class="btn btn-warning">Edit</a>
               <a href="#" type="button" class="btn btn-danger delete" data-id="{{$row->id}}" data-name="{{$row->name}}">Delete</a>
-              <a href="{{route('getMovies', $row->id)}}" type="button" class="btn btn-info delete" data-id="{{$row->id}}" data-name="{{$row->name}}">Quản lý video</a>
+              <a href="{{route('getMovies', $row->id)}}" type="button" class="btn btn-info " data-id="{{$row->id}}" data-name="{{$row->name}}">Quản lý video</a>
             </td>
           </tr>
           @endforeach
@@ -95,8 +95,8 @@
       var name = $(this).attr('data-name');
 
       swal({
-      title: "Are you sure?",
-      text: "Kamu akan menghapus data pegawai dengan id "+name+" ",
+      title: "Bạn có chắc?",
+      text: "Bạn muốn xóa khóa học có tên là "+name+" ",
       icon: "warning",
       buttons: true,
       dangerMode: true,
@@ -104,11 +104,11 @@
     .then((willDelete) => {
       if (willDelete) {
         window.location = "/deletecourse/" + pegawaiid+""
-        swal("Poof! Your imaginary file has been deleted!", {
+        swal("Đã xóa thành công khóa học!", {
           icon: "success",
         });
       } else {
-        swal("Data tidak jadi dihapus!");
+        swal("Dữ liệu chưa bị xóa!");
       }
     });
     });

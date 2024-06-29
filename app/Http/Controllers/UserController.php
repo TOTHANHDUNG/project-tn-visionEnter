@@ -46,7 +46,7 @@ public function insertaccount(Request $request){
         $user->save();
     }
 
-    return redirect()->route('data-account')->with('success', 'Data Berhasil Di tambahkan');
+    return redirect()->route('data-account')->with('success', 'Dữ liệu được thêm thành công!');
 }
 
     public function editdataaccount($id){
@@ -60,15 +60,15 @@ public function insertaccount(Request $request){
         $data = User::find($id);
         $data->update($request->all());
         if(session('halaman_url')){
-            return Redirect(session('halaman_url'))->with('success','Data Berhasil Di Update');
+            return Redirect(session('halaman_url'))->with('success','Bạn đã cập nhật thành công!');
         }
-        return redirect()->route('data-account')->with('success','Data Berhasil Di Update');
+        return redirect()->route('data-account')->with('success','Bạn đã cập nhật thành công!');
     }
 
     public function delete($id){
         $data = User::find($id);
         $data->delete();
-        return redirect()->route('data-account')->with('success','Data Berhasil Di Update');
+        return redirect()->route('data-account')->with('success','Bạn đã cập nhật thành công!');
     }
 
     //login-logout-sign-up
@@ -183,7 +183,7 @@ public function insertaccount(Request $request){
         // Implement the logic to handle the post password request
     }
 
-    public function change_password()
+    public function changePassword()
     {        
         return view('webfront.user-action.change_password');
     }
