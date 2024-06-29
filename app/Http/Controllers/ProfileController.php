@@ -27,7 +27,7 @@ class ProfileController extends Controller
         $user->email = $request->email;
         $user->save();
 
-        return redirect()->back()->with('success', 'Profile updated successfully.');
+        return redirect()->back()->with('success', 'Cập nhật thông tin thành công!.');
     }
 
     public function updateProfilePhoto(Request $request)

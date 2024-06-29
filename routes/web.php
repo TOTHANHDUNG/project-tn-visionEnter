@@ -79,6 +79,9 @@ Route::group(['middleware' => ['auth.admin']], function () {
 
 });
 
+Route::get('/change_password', [UserController::class, 'changePassword'])->name('user-action.change_password');
+Route::post('/change_password', [UserController::class, 'changePassword'])->name('user-action.change_password');
+
 Route::get('/login',[UserController::class,'login'])->name('login');
 Route::post('/login',[UserController::class,'loginPost'])->name('login.post');
 
@@ -157,6 +160,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('/profile/photo', [ProfileController::class, 'updateProfilePhoto'])->name('profile.updatePhoto');
 });
+
 
 //thống kê
 

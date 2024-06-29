@@ -19,7 +19,7 @@
                         @foreach ($course_english as $course)
                         <div class="card_box">
                             <div class="image-container">
-                                <img class="img avatar-teacher" src="{{ asset('photodata/' . $course->photo) }}" alt="">
+                                <img class="img avatar-teacher" src="{{$course->photo}}" alt="">
                             </div>
                             <div class="card_text">
                                 <h4>{{$course->name}}</h4>

@@ -63,7 +63,7 @@
                                             <div class="card_box">
                                                 <div class="image-container">
                                                     <img class="img avatar-teacher"
-                                                        src="{{ asset('photodata/' . $course->photo) }}"
+                                                        src="{{$course->photo }}"
                                                         alt="image_course">
                                                 </div>
                                                 <div class="card_text">
@@ -95,7 +95,7 @@
                                             <div class="card_box">
                                                 <div class="image-container">
                                                     <img class="img avatar-teacher"
-                                                        src="{{ asset('photodata/' . $course->photo) }}"
+                                                        src="{{$course->photo}}"
                                                         alt="image_course">
                                                 </div>
                                                 <div class="card_text">

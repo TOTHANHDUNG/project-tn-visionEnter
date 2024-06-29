@@ -8,7 +8,7 @@
       <div class="col-8">
         <div class="card">
           <div class="card-body">
-            <form action="/insertcourse" method="POST" enctype="multipart/form-data">
+            <form action="{{route('insertcourse')}}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label" required> Tên khoá học</label>
@@ -65,13 +65,13 @@
                     <div class="alert alert-danger">{{$message}}</div>
                 @enderror
               </div>
-              <div class="mb-3">
+              {{-- <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label" required>Video</label>
                 <input type="file" name="video" class="form-control" id="photo">
                 @error('name')
                     <div class="alert alert-danger">{{$message}}</div>
                 @enderror
-              </div>
+              </div> --}}
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
           </div>
