@@ -89,93 +89,92 @@
 					<li data-target="#myCarousel" data-slide-to="1"></li>
 					<li data-target="#myCarousel" data-slide-to="2"></li>
 				  </ol>
-		  
-				  <!-- Wrapper for carousel items -->
-				  <div class="carousel-inner">
-					<div class="carousel-item active">
-					  <div class="row">
-						<div class="col-sm-6">
-						  <div class="media">
-							<img src="/examples/images/clients/1.jpg" class="mr-3" alt="">
-							<div class="media-body">
-							  <div class="testimonial">
-								<p>Lorem ipsum dolor sit amet, consec adipiscing elit. Nam eusem scelerisque tempor, varius quam luctus dui. Mauris magna metus nec.</p>
-								<p class="overview"><b>Paula Wilson</b>, Media Analyst</p>
+						
+						<!-- Wrapper for carousel items -->
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+							  <div class="row">
+								<div class="col-sm-6">
+								  <div class="media">
+									<img src="/examples/images/clients/1.jpg" class="mr-3" alt="">
+									<div class="media-body">
+									  <div class="testimonial">
+										<p>Lorem ipsum dolor sit amet, consec adipiscing elit. Nam eusem scelerisque tempor, varius quam luctus dui. Mauris magna metus nec.</p>
+										<p class="overview"><b>Paula Wilson</b>, Media Analyst</p>
+									  </div>
+									</div>
+								  </div>
+								</div>
+								<div class="col-sm-6">
+								  <div class="media">
+									<img src="/examples/images/clients/2.jpg" class="mr-3" alt="">
+									<div class="media-body">
+									  <div class="testimonial">
+										<p>Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget mi suscipit tincidunt. Utmtc tempus dictum. Pellentesque virra.</p>
+										<p class="overview"><b>Antonio Moreno</b>, Web Developer</p>
+									  </div>
+									</div>
+								  </div>
+								</div>
+							  </div>
+							</div>
+							<div class="carousel-item">
+							  <div class="row">
+								<div class="col-sm-6">
+								  <div class="media">
+									<img src="/examples/images/clients/3.jpg" class="mr-3" alt="">
+									<div class="media-body">
+									  <div class="testimonial">
+										<p>Lorem ipsum dolor sit amet, consec adipiscing elit. Nam eusem scelerisque tempor, varius quam luctus dui. Mauris magna metus nec.</p>
+										<p class="overview"><b>Michael Holz</b>, Seo Analyst</p>
+									  </div>
+									</div>
+								  </div>
+								</div>
+								<div class="col-sm-6">
+								  <div class="media">
+									<img src="/examples/images/clients/4.jpg" class="mr-3" alt="">
+									<div class="media-body">
+									  <div class="testimonial">
+										<p>Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget mi suscipit tincidunt. Utmtc tempus dictum. Pellentesque virra.</p>
+										<p class="overview"><b>Mary Saveley</b>, Web Designer</p>
+									  </div>
+									</div>
+								  </div>
+								</div>
+							  </div>
+							</div>
+							<div class="carousel-item">
+							  <div class="row">
+								<div class="col-sm-6">
+								  <div class="media">
+									<img src="/examples/images/clients/5.jpg" class="mr-3" alt="">
+									<div class="media-body">
+									  <div class="testimonial">
+										<p>Lorem ipsum dolor sit amet, consec adipiscing elit. Nam eusem scelerisque tempor, varius quam luctus dui. Mauris magna metus nec.</p>
+										<p class="overview"><b>Martin Sommer</b>, UX Analyst</p>
+									  </div>
+									</div>
+								  </div>
+								</div>
+								<div class="col-sm-6">
+								  <div class="media">
+									<img src="/examples/images/clients/6.jpg" class="mr-3" alt="">
+									<div class="media-body">
+									  <div class="testimonial">
+										<p>Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget mi suscipit tincidunt. Utmtc tempus dictum. Pellentesque virra.</p>
+										<p class="overview"><b>John Williams</b>, Web Developer</p>
+									  </div>
+									</div>
+								  </div>
+								</div>
 							  </div>
 							</div>
 						  </div>
-						</div>
-						<div class="col-sm-6">
-						  <div class="media">
-							<img src="/examples/images/clients/2.jpg" class="mr-3" alt="">
-							<div class="media-body">
-							  <div class="testimonial">
-								<p>Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget mi suscipit tincidunt. Utmtc tempus dictum. Pellentesque virra.</p>
-								<p class="overview"><b>Antonio Moreno</b>, Web Developer</p>
-							  </div>
-							</div>
-						  </div>
-						</div>
-					  </div>
 					</div>
-					<div class="carousel-item">
-					  <div class="row">
-						<div class="col-sm-6">
-						  <div class="media">
-							<img src="/examples/images/clients/3.jpg" class="mr-3" alt="">
-							<div class="media-body">
-							  <div class="testimonial">
-								<p>Lorem ipsum dolor sit amet, consec adipiscing elit. Nam eusem scelerisque tempor, varius quam luctus dui. Mauris magna metus nec.</p>
-								<p class="overview"><b>Michael Holz</b>, Seo Analyst</p>
-							  </div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-sm-6">
-						  <div class="media">
-							<img src="/examples/images/clients/4.jpg" class="mr-3" alt="">
-							<div class="media-body">
-							  <div class="testimonial">
-								<p>Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget mi suscipit tincidunt. Utmtc tempus dictum. Pellentesque virra.</p>
-								<p class="overview"><b>Mary Saveley</b>, Web Designer</p>
-							  </div>
-							</div>
-						  </div>
-						</div>
-					  </div>
-					</div>
-					<div class="carousel-item">
-					  <div class="row">
-						<div class="col-sm-6">
-						  <div class="media">
-							<img src="/examples/images/clients/5.jpg" class="mr-3" alt="">
-							<div class="media-body">
-							  <div class="testimonial">
-								<p>Lorem ipsum dolor sit amet, consec adipiscing elit. Nam eusem scelerisque tempor, varius quam luctus dui. Mauris magna metus nec.</p>
-								<p class="overview"><b>Martin Sommer</b>, UX Analyst</p>
-							  </div>
-							</div>
-						  </div>
-						</div>
-						<div class="col-sm-6">
-						  <div class="media">
-							<img src="/examples/images/clients/6.jpg" class="mr-3" alt="">
-							<div class="media-body">
-							  <div class="testimonial">
-								<p>Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget mi suscipit tincidunt. Utmtc tempus dictum. Pellentesque virra.</p>
-								<p class="overview"><b>John Williams</b>, Web Developer</p>
-							  </div>
-							</div>
-						  </div>
-						</div>
-					  </div>
-					</div>
-				  </div>
 				</div>
-			  </div>
 			</div>
-		  </div>
+		</div>
 	</div>
-	
 </body>
 </html>

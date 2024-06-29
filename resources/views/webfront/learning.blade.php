@@ -248,20 +248,26 @@
                     <div class="container container-rating d-flex justify-content-center align-items-center">
                         <div id="review" class="wrapper">
                             <h3>Đánh giá về bài học.</h3>
-                            <form action="#">
+                            @if(auth()->check())
+                                <div id="rateYo"></div>
+                            @else
+                                <div id="rateYo1"></div>
+                            @endif
+                            <form action="{{ route('save-rating') }}" method="POST" id="ratingForm">
+                                @csrf
                                 <div class="form-group">
                                     <input type="number" name="rating" hidden>
                                     <div class="rating">
-                                        <i class='bx bx-star star' style="--i: 0;"></i>
-                                        <i class='bx bx-star star' style="--i: 1;"></i>
-                                        <i class='bx bx-star star' style="--i: 2;"></i>
-                                        <i class='bx bx-star star' style="--i: 3;"></i>
-                                        <i class='bx bx-star star' style="--i: 4;"></i>
+                                        <i class='bx bx-star star' style="--i: 0;" data-value="1"></i>
+                                        <i class='bx bx-star star' style="--i: 1;" data-value="2"></i>
+                                        <i class='bx bx-star star' style="--i: 2;" data-value="3"></i>
+                                        <i class='bx bx-star star' style="--i: 3;" data-value="4"></i>
+                                        <i class='bx bx-star star' style="--i: 4;" data-value="5"></i>
                                         <input type="hidden" name="rating" value="0">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <textarea name="opinion" class="form-control" rows="5" placeholder="Ý kiến của bạn..."></textarea>
+                                    <textarea name="opinion" class="form-control" rows="5" placeholder="Ý kiến của bạn..." required></textarea>
                                 </div>
                                 <div class="form-group">
                                     <div class="btn-group">
@@ -271,6 +277,8 @@
                             </form>
                         </div>
                     </div>
+                    
+
                 </div>
             </div>
         </div>
@@ -282,6 +290,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
     <script src="/js/try-learning.js"></script>
     <script>
         //sự kiện click video
@@ -295,6 +304,7 @@
                 videoPlayer.pause();
             }
         });
+
 
         //review
         const allStar = document.querySelectorAll('.rating .star');
@@ -315,6 +325,47 @@
                 }
             });
         });
+        document.querySelectorAll('.star').forEach((star, index) => {
+            star.addEventListener('click', () => {
+                let rating = index + 1;
+                document.querySelector('input[name="rating"]').value = rating;
+                updateStarActive(rating);
+            });
+        });
+
+        function updateStarActive(rating) {
+            document.querySelectorAll('.star').forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+        //sự kiện submit review
+        $(document).ready(function() {
+            $('form').submit(function(event) {
+                event.preventDefault(); // Prevent default form submission
+                var formData = $(this).serialize(); // Serialize form data
+                var url = $(this).attr('action'); // Get form action URL
+
+                // Send Ajax request
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: formData,
+                    success: function(response) {
+                        // Handle success response, e.g., show a success message
+                        alert('Đã gửi đánh giá thành công!');
+                    },
+                    error: function(error) {
+                        // Handle error response, e.g., show an error message
+                        alert('Đã xảy ra lỗi khi gửi đánh giá!');
+                    }
+                });
+            });
+        });
+
 
         //ẩn văn bản nếu quá nhiều
         const toggleContentBtns = document.querySelectorAll('.toggle-content');
@@ -378,40 +429,7 @@
                 alert('Bạn cần mua khóa học để xem thêm video!');
             }
         }
-        //sự kiện control media cho video
-        let videoElement = $('#videoPlayer')[0];
-        let playBtn = $('#playBtn');
-        let pauseBtn = $('#pauseBtn');
-        let volumeRange = $('#volumeRange');
-        let videoTime = $('#videoTime');
-        let seekRange = $('#seekRange');
-
-        playBtn.on('click', function() {
-            videoElement.play();
-        });
-
-        pauseBtn.on('click', function() {
-            videoElement.pause();
-        });
-
-        volumeRange.on('input', function() {
-            videoElement.volume = parseFloat(volumeRange.val());
-        });
-
-        videoElement.ontimeupdate = function() {
-            seekRange.val(videoElement.currentTime);
-            videoTime.text(formatTime(videoElement.currentTime) + ' / ' + formatTime(videoElement.duration));
-        };
-
-        seekRange.on('input', function() {
-            videoElement.currentTime = parseInt(seekRange.val());
-        });
-
-        function formatTime(seconds) {
-            let minutes = Math.floor(seconds / 60);
-            let secs = Math.floor(seconds % 60);
-            return minutes + ':' + (secs < 10 ? '0' : '') + secs;
-        }
+       
     </script>
 </body>
 

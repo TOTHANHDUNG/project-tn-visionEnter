@@ -238,7 +238,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/pegawai" class="nav-link">
+            <a href="/ratings" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>
                 Quản lý đánh giá

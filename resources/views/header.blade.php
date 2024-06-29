@@ -50,36 +50,39 @@
 					</div>
 				</form>
 				<div class="navbar-btn ml-auto action-buttons d-flex justify-content-center">
-                    @guest
-                        <div class="nav-item ml-auto action-buttons">
-                            <a href="/login" class="btn btn-login">Đăng nhập</a>
-                            <a href="/registration" class="btn sign-up-btn">Đăng ký</a>
-                        </div>
-                    @else
-                        <div class="nav-item ml-auto action-buttons">
-                            <div class="dropdown mr-5">
-                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{ Auth::user()->photo ? asset('photodata/' . Auth::user()->photo) : asset('photodata/ba.png') }}" alt="Avatar" class="cover-avatar me-2" style="width: 60px">
-                                    <span>{{ Auth::user()->name }}</span> <!-- Hiển thị tên người dùng -->
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="/profile">Xem Hồ Sơ Cá Nhân</a></li>
-                                    <li><a class="dropdown-item" href="#">Cài Đặt</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li>
-                                        <form action="{{ route('logout') }}" method="POST">
-                                            @csrf
-                                            <!-- Sử dụng onclick để gọi hàm confirmLogout() khi nhấp vào nút Logout -->
-                                            <button type="submit" class="dropdown-item" onclick="return confirmLogout()">Đăng Xuất</button>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
-                                                    
-                        </div>
-                        
-                    @endguest
-                </div>
+					@guest
+						<div class="nav-item ml-auto action-buttons">
+							<a href="/login" class="btn btn-login">Đăng nhập</a>
+							<a href="/registration" class="btn sign-up-btn">Đăng ký</a>
+						</div>
+					@else
+						<div class="nav-item ml-auto action-buttons">
+							<div class="dropdown mr-5">
+								<a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+									@if (trim(Auth::user()->photo))
+										<img src="{{ asset('photodata/' . Auth::user()->photo) . '?' . time() }}" alt="Avatar" class="cover-avatar me-2">
+									@else
+										<img src="{{ asset('photodata/avatar.png') }}" alt="Avatar" class="cover-avatar me-2">
+									@endif
+									<span>{{ Auth::user()->name }}</span>
+								</a>
+								
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<li><a class="dropdown-item" href="/profile">Xem Hồ Sơ Cá Nhân</a></li>
+									<li><a class="dropdown-item" href="#">Cài Đặt</a></li>
+									<li><hr class="dropdown-divider"></li>
+									<li>
+										<form action="{{ route('logout') }}" method="POST">
+											@csrf
+											<button type="submit" class="dropdown-item" onclick="return confirmLogout()">Đăng Xuất</button>
+										</form>
+									</li>
+								</ul>
+							</div>                          
+						</div>        
+					@endguest
+				</div>
+				
 			</div>
 		</nav>
 	</div>

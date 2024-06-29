@@ -22,4 +22,13 @@ class User extends Authenticatable
     // {
     //     return $this->role === 'admin';
     // }
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }
