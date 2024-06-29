@@ -68,7 +68,7 @@
                                 </button>
                                 @else
                                 <button class="btn btn-muakhoahoc ml-3">
-                                    <a href="{{route('learn', [$courseDetail->id])}}">Mua khóa học</a>
+                                    <a href="{{route('pricing.processTransaction', $courseDetail->id)}}">Mua khóa học</a>
                                     <lord-icon src="https://cdn.lordicon.com/mfmkufkr.json" trigger="loop" delay="2000"
                                         colors="primary:#ffffff" style="width:20px;height:20px; padding-top: 3px"></lord-icon>
                                 </button>
