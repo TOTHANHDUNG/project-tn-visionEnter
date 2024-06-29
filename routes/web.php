@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\TeacherController; // Sửa thành Controllers
 use App\Models\Teacher;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\RatingsController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -82,7 +84,6 @@ Route::post('/login',[UserController::class,'loginPost'])->name('login.post');
 
 Route::get('/registration', [UserController::class,'registration'])->name('registration');
 Route::post('/registration', [UserController::class,'registrationPost'])->name('registration.post');
-
 Route::post('/logout',[UserController::class,'logout'])->name('logout');
 
 Route::get('/forgetpassword', function () {
@@ -105,9 +106,9 @@ Route::get('/notifications', function () {
     return view('webfront.user-action.notifications');
 });
 
-Route::get('/forgetpassword', function () {
-    return view('admin.forgetpassword');
-});
+// Route::get('/forgetpassword', function () {
+//     return view('admin.forgetpassword');
+// });
 // Route::get('/course', function () {
 //     return view('webfront.course');
 // });
@@ -139,9 +140,23 @@ Route::get('/', 'App\Http\Controllers\UserController@data')->name('home');
 
 Route::get('/home', 'App\Http\Controllers\TeacherController@teachers');
 
+//đánh giá
+Route::get('/ratings', [RatingsController::class, 'ratings'])->name('ratings');
+Route::get('/edit-rating/{id}', [RatingsController::class, 'editrating'])->name('edit-rating');
+Route::post('/updaterating/{id}', [RatingsController::class, 'updaterating'])->name('updaterating');
+Route::get('/deleterating/{id}', [RatingsController::class, 'delete'])->name('deleterating');
 
+Route::post('/save-rating', [RatingsController::class, 'saveRating'])->name('save-rating');
+// Route::get('/showrating', [RatingsController::class, 'showrating'])->name('showrating');
 
+// Route::get('/ratings','App\Http\Controllers\RatingsController@ratings');
 
+//quản lý thông tin cá nhân
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/photo', [ProfileController::class, 'updateProfilePhoto'])->name('profile.updatePhoto');
+});
 
 //thống kê
 
@@ -153,4 +168,7 @@ Route::get('/home', 'App\Http\Controllers\TeacherController@teachers');
 // Route::get('/', [UserController::class, 'welcome'])->name('admin.welcome');
 
 //auth social
+
+
+
 

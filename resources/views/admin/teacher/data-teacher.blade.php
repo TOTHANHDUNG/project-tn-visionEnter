@@ -47,7 +47,7 @@
         </thead>
         <tbody>
           @php
-              $no = 1;
+              $no = ($data->currentPage() - 1) * $data->perPage() + 1;
           @endphp
           @foreach ($data as $row)
           <tr>

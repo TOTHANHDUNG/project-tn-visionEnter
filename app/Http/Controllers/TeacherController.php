@@ -39,7 +39,7 @@ class TeacherController extends Controller
             $data->photo = $request->file('photo')->getClientOriginalName();
             $data->save();
         }
-        return redirect()->route('data-teacher')->with('success','Data Berhasil Di tambahkan');
+        return redirect()->route('data-teacher')->with('success','Thêm thành công!');
     }
 
     public function editteacher($id){
@@ -61,9 +61,9 @@ class TeacherController extends Controller
         }
     
         if(session('halaman_url')){
-            return redirect(session('halaman_url'))->with('success','Data Berhasil Di Update');
+            return redirect(session('halaman_url'))->with('success','Cập nhật thành công!');
         }
-        return redirect()->route('data-teacher')->with('success','Data Berhasil Di Update');
+        return redirect()->route('data-teacher')->with('success','Cập nhật thành công');
     }
     
     public function delete($id){

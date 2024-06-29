@@ -7,6 +7,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Session; // Import Session
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactEmail;
 
 class UserController extends Controller
 {
@@ -102,7 +105,8 @@ public function insertaccount(Request $request){
         $request->validate([
             'name'=> 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
+            'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $data['name'] = $request->name;
@@ -113,8 +117,8 @@ public function insertaccount(Request $request){
         $data['email'] = $request->email;
         $data['password'] = Hash::make($request->password);
         if (!$request->has('photo')) {
-            $data['photo'] = '/images/avatar.png';
-        }
+            $data['photo'] = $request->photo ?? '/avatar.png';
+        }        
         $user = User::create($data);
         if(!$user){
             return redirect(route('registration'))->with("error","Đăng ký thất bại, thử lại.");
@@ -133,6 +137,83 @@ public function insertaccount(Request $request){
         $data = User::all(); // Lấy tất cả các khóa học
         return view('webfront.home', compact('data'));
     }
+    
+    public function forgetPass()
+    {
+        // Return the view for the forget password form
+        return view('webfront.forgetpassword');
+    }
 
+    public function postForgetPass(Request $req)
+    {
+        // Validate the email input
+        $req->validate([
+            'email' => 'required|email|exists:users,email',
+        ], [
+            'email.required' => 'Vui lòng nhập địa chỉ email hợp lệ',
+            'email.exists' => 'Email này không tồn tại trong hệ thống'
+        ]);
+
+        // Generate a random ID
+        $id = strtoupper(Str::random(10));
+
+        // Find the user with the provided email
+        $users = User::where('email', $req->email)->first();
+
+        // Update the user's ID
+        $users->update(['id' => $id]);
+
+        // Send the email
+        Mail::send('webfront.check_email_forget', compact('users'), function($email) use($users) {
+            $email->subject('MyShopping - Lấy lại mật khẩu tài khoản');
+            $email->to($users->email, $users->name);
+        });
+
+        // Redirect back with a success message
+        return redirect()->back()->with('yes', 'Vui lòng check email để thực hiện thay đổi mật khẩu');
+    }
+
+    public function getPass($id)
+    {
+        return view('webfront.check_email_forget');
+    }
+
+    public function postGetPass(Request $req, $id)
+    {
+        // Implement the logic to handle the post password request
+    }
+
+    public function change_password()
+    {        
+        return view('webfront.user-action.change_password');
+    }
+
+    public function check_change_password(Request $req){
+        $auth = auth('web')->user();
+        $req->validate([
+            'old_password' => ['required', function($attr, $value, $fail) use($auth){
+                if(!Hash::check($value, $auth->password)){
+                    $fail('Mật khẩu không chính xác');
+                };
+            }],
+            'password' => 'required|min:6',
+            'confirm_password' => 'required|same:password'
+        ]);
+
+        $data['password'] = bcrypt($req->password);
+        if($auth->update($data)){
+            auth('web')->logout();
+            return redirect()->route('admin.login')->with('ok', 'Cập nhật mật khẩu thành công!');
+        }
+        return redirect()->back()->with('no', 'Lỗi gì đó, làm ơn kiểm tra lại!'); 
+    }
+
+    //lấy thông tin người dùng và chuyển tới view quản lý thông tin cá nhân
+    public function editProfile()
+{
+    $user = Auth::user(); // Lấy thông tin người dùng đã đăng nhập
+    return view('webfront.user-action.profile', compact('user'));
 }
+
+}    
 
